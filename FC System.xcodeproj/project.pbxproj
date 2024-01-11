@@ -14,6 +14,10 @@
 		BDC183A62B4FFC43003C8600 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDC183A42B4FFC43003C8600 /* LaunchScreen.storyboard */; };
 		BDC183AE2B500986003C8600 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC183AD2B500986003C8600 /* TabBarController.swift */; };
 		BDC183B02B500A26003C8600 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC183AF2B500A26003C8600 /* MoreViewController.swift */; };
+		BDC183B32B500AD9003C8600 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC183B22B500AD9003C8600 /* Models.swift */; };
+		BDC183B52B500BB9003C8600 /* PlayersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC183B42B500BB9003C8600 /* PlayersListViewController.swift */; };
+		BDC183B82B500BFE003C8600 /* PlayerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC183B72B500BFE003C8600 /* PlayerViewCell.swift */; };
+		BDC183BA2B500C3D003C8600 /* PlayerCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC183B92B500C3D003C8600 /* PlayerCellHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		BDC183A72B4FFC43003C8600 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BDC183AD2B500986003C8600 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BDC183AF2B500A26003C8600 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		BDC183B22B500AD9003C8600 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		BDC183B42B500BB9003C8600 /* PlayersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersListViewController.swift; sourceTree = "<group>"; };
+		BDC183B72B500BFE003C8600 /* PlayerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewCell.swift; sourceTree = "<group>"; };
+		BDC183B92B500C3D003C8600 /* PlayerCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +68,34 @@
 			children = (
 				BDC183992B4FFC41003C8600 /* AppDelegate.swift */,
 				BDC1839B2B4FFC41003C8600 /* SceneDelegate.swift */,
-				BDC1839D2B4FFC41003C8600 /* MainViewController.swift */,
 				BDC183AF2B500A26003C8600 /* MoreViewController.swift */,
+				BDC1839D2B4FFC41003C8600 /* MainViewController.swift */,
+				BDC183B62B500BE5003C8600 /* PlayersScene */,
 				BDC183AD2B500986003C8600 /* TabBarController.swift */,
 				BDC183A22B4FFC43003C8600 /* Assets.xcassets */,
 				BDC183A42B4FFC43003C8600 /* LaunchScreen.storyboard */,
 				BDC183A72B4FFC43003C8600 /* Info.plist */,
+				BDC183B12B500ACC003C8600 /* Models */,
 			);
 			path = "FC System";
+			sourceTree = "<group>";
+		};
+		BDC183B12B500ACC003C8600 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BDC183B22B500AD9003C8600 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BDC183B62B500BE5003C8600 /* PlayersScene */ = {
+			isa = PBXGroup;
+			children = (
+				BDC183B42B500BB9003C8600 /* PlayersListViewController.swift */,
+				BDC183B72B500BFE003C8600 /* PlayerViewCell.swift */,
+				BDC183B92B500C3D003C8600 /* PlayerCellHeader.swift */,
+			);
+			path = PlayersScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +169,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDC183B02B500A26003C8600 /* MoreViewController.swift in Sources */,
+				BDC183BA2B500C3D003C8600 /* PlayerCellHeader.swift in Sources */,
 				BDC1839E2B4FFC41003C8600 /* MainViewController.swift in Sources */,
 				BDC183AE2B500986003C8600 /* TabBarController.swift in Sources */,
+				BDC183B32B500AD9003C8600 /* Models.swift in Sources */,
 				BDC1839A2B4FFC41003C8600 /* AppDelegate.swift in Sources */,
+				BDC183B82B500BFE003C8600 /* PlayerViewCell.swift in Sources */,
 				BDC1839C2B4FFC41003C8600 /* SceneDelegate.swift in Sources */,
+				BDC183B52B500BB9003C8600 /* PlayersListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
