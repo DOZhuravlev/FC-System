@@ -30,7 +30,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let firstIcon = UITabBarItem(title: "Главная", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         first.tabBarItem = firstIcon
 
-        let second = MainViewController()
+        let second = MatchesListViewController()
         let secondIcon = UITabBarItem(title: "Турнир", image: UIImage(systemName: "trophy"), selectedImage: UIImage(systemName: "trophy.fill"))
         second.tabBarItem = secondIcon
 
@@ -38,7 +38,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let thirdIcon = UITabBarItem(title: "Команда", image: UIImage(systemName: "person.3"), selectedImage: UIImage(systemName: "person.3.fill"))
         third.tabBarItem = thirdIcon
 
-        let fourth = MainViewController()
+        let fourth = TrainingListViewController()
         let fourthIcon = UITabBarItem(title: "Тренировки", image: UIImage(systemName: "sportscourt"), selectedImage: UIImage(systemName: "sportscourt.fill"))
         fourth.tabBarItem = fourthIcon
 

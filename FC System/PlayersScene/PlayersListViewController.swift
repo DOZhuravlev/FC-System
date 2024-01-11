@@ -122,17 +122,16 @@ extension PlayersListViewController: UICollectionViewDataSource, UICollectionVie
     }
 
     // TODO: - выбор ячейки
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//        guard let viewModel = viewModel else { return }
-//        viewModel.selectedItem(atIndexPath: indexPath)
-//
-//        let vc = PlayerDetailViewController()
-//        vc.viewModel = viewModel.viewModelForSelectedItem()
-//
-//        present(vc, animated: true)
-//    }
-// TODO: - доработать метод перехода на детейел
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let player = players[indexPath.item]
+        let vc = PlayerDetailViewController()
+        vc.player = player
+        present(vc, animated: true)
+    }
+
+    
+// //TODO: - доработать метод перехода на детейел
 //    override func show(_ vc: UIViewController, sender: Any?) {
 //        guard let viewModel = viewModel else { return }
 //
