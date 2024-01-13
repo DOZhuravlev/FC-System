@@ -21,6 +21,10 @@ struct Season {
     let match: [Match]
 }
 
+struct MockUser: Decodable {
+    let name: String
+}
+
 
 
 struct Player {

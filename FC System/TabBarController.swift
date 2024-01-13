@@ -30,7 +30,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let firstIcon = UITabBarItem(title: "Главная", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         first.tabBarItem = firstIcon
 
-        let second = MatchesListViewController()
+        let second = SeasonsViewController()
         let secondIcon = UITabBarItem(title: "Турнир", image: UIImage(systemName: "trophy"), selectedImage: UIImage(systemName: "trophy.fill"))
         second.tabBarItem = secondIcon
 
