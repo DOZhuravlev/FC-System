@@ -8,146 +8,68 @@
 import Firebase
 import FirebaseFirestore
 
+enum DataStructureType {
+    case matches
+    case players
+    case news
+    case statistics
+    case currentSeason
+    case topNews
+    case setupApp
+}
+
 final class FirestoreService {
 
     static let shared = FirestoreService()
-
     private init() {}
-
     let db = Firestore.firestore()
 
-    private var coachesRef: CollectionReference {
-        return db.collection("players/coaches/coaches")
-    }
+    func fetchItems<T: Decodable>(for type: DataStructureType, completion: @escaping (Result<[T], Error>) -> Void) {
 
-    private var goalkeepersRef: CollectionReference {
-        return db.collection("players/coaches/goalkeepers")
-    }
+        var collectionReference: CollectionReference
 
-    private var defendersRef: CollectionReference {
-        return db.collection("players/coaches/defenders")
-    }
+        switch type {
+        case .matches:
+            collectionReference = db.collection("matches")
+        case .players:
+            collectionReference = db.collection("players")
+        case .news:
+            collectionReference = db.collection("news")
+        case .statistics:
+            collectionReference = db.collection("statistics")
+        case .currentSeason:
+            collectionReference = db.collection("currentSeason")
+        case .topNews:
+            collectionReference = db.collection("topNews")
+        case .setupApp:
+            collectionReference = db.collection("setupApp")
+        }
 
-    private var midfieldersRef: CollectionReference {
-        return db.collection("players/coaches/midfielders")
-    }
-
-    private var forwardsRef: CollectionReference {
-        return db.collection("players/coaches/forwards")
-    }
-
-    func getPlayersData(completion: @escaping (Result<([MockUser], [MockUser], [MockUser], [MockUser], [MockUser]), Error>) -> Void) {
-
-        var coaches: [MockUser] = []
-        var goalkeepers: [MockUser] = []
-        var defenders: [MockUser] = []
-        var midfielders: [MockUser] = []
-        var forwards: [MockUser] = []
-
-        let dispatchGroup = DispatchGroup()
-
-        dispatchGroup.enter()
-        coachesRef.getDocuments { snapShot, error in
-            defer {
-                dispatchGroup.leave()
-            }
+        collectionReference.getDocuments { snapshot, error in
             if let error = error {
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
             } else {
-                if let documents = snapShot?.documents {
+                if let documents = snapshot?.documents {
                     do {
-                        coaches = try documents.compactMap { document in
-                            try document.data(as: MockUser.self)
+                        let items = try documents.compactMap { document in
+                            try document.data(as: T.self)
+                        }
+                        DispatchQueue.main.async {
+                            completion(.success(items))
                         }
                     } catch let error {
-                        completion(.failure(error))
+                        DispatchQueue.main.async {
+                            completion(.failure(error))
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        completion(.success([]))
                     }
                 }
             }
-        }
-
-        dispatchGroup.enter()
-        goalkeepersRef.getDocuments { snapShot, error in
-            defer {
-                dispatchGroup.leave()
-            }
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let documents = snapShot?.documents {
-                    do {
-                        goalkeepers = try documents.compactMap { document in
-                            try document.data(as: MockUser.self)
-                        }
-                    } catch let error {
-                        completion(.failure(error))
-                    }
-                }
-            }
-        }
-
-        dispatchGroup.enter()
-        defendersRef.getDocuments { snapShot, error in
-            defer {
-                dispatchGroup.leave()
-            }
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let documents = snapShot?.documents {
-                    do {
-                        defenders = try documents.compactMap { document in
-                            try document.data(as: MockUser.self)
-                        }
-                    } catch let error {
-                        completion(.failure(error))
-                    }
-                }
-            }
-        }
-
-        dispatchGroup.enter()
-        midfieldersRef.getDocuments { snapShot, error in
-            defer {
-                dispatchGroup.leave()
-            }
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let documents = snapShot?.documents {
-                    do {
-                        midfielders = try documents.compactMap { document in
-                            try document.data(as: MockUser.self)
-                        }
-                    } catch let error {
-                        completion(.failure(error))
-                    }
-                }
-            }
-        }
-
-        dispatchGroup.enter()
-        forwardsRef.getDocuments { snapShot, error in
-            defer {
-                dispatchGroup.leave()
-            }
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let documents = snapShot?.documents {
-                    do {
-                        forwards = try documents.compactMap { document in
-                            try document.data(as: MockUser.self)
-                        }
-                    } catch let error {
-                        completion(.failure(error))
-                    }
-                }
-            }
-        }
-
-        dispatchGroup.notify(queue: .main) {
-            completion(.success((coaches, goalkeepers, defenders, midfielders, forwards)))
         }
     }
 }

@@ -10,17 +10,20 @@ import UIKit
 
 final class PlayersCellHeader: UICollectionReusableView {
 
+    // MARK: - Properties
+
     static let identifier = "PlayersCellHeader"
 
     // MARK: - Outlets
 
     lazy var title: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
         return label
     }()
 
+    // MARK: - Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +34,7 @@ final class PlayersCellHeader: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // MARK: - SetupUI
 
     private func setupLayout() {
         title.frame = bounds

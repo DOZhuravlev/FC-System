@@ -19,10 +19,10 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func setupTabBarController() {
-
-        tabBar.tintColor = .systemRed
-        tabBar.backgroundColor = .gray
-
+        tabBar.tintColor = .systemBlue
+        tabBar.barTintColor = .systemGray5
+        tabBar.backgroundColor = .systemGray5
+        tabBar.isTranslucent = false
     }
 
     private func setupTabBarViewController() {
@@ -38,8 +38,8 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let thirdIcon = UITabBarItem(title: "Команда", image: UIImage(systemName: "person.3"), selectedImage: UIImage(systemName: "person.3.fill"))
         third.tabBarItem = thirdIcon
 
-        let fourth = TrainingListViewController()
-        let fourthIcon = UITabBarItem(title: "Тренировки", image: UIImage(systemName: "sportscourt"), selectedImage: UIImage(systemName: "sportscourt.fill"))
+        let fourth = TheoryViewController()
+        let fourthIcon = UITabBarItem(title: "Теория", image: UIImage(systemName: "sportscourt"), selectedImage: UIImage(systemName: "sportscourt.fill"))
         fourth.tabBarItem = fourthIcon
 
         let fifth = MoreViewController()
@@ -48,13 +48,6 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
         let controllers = [first, second, third, fourth, fifth]
         self.setViewControllers(controllers, animated: true)
-
-
     }
-
-
-    // MARK: - Navigation
-
-
 }
 

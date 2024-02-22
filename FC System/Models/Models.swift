@@ -6,89 +6,85 @@
 //
 
 import Foundation
+import UIKit
 
-enum Position: String {
-    case goalkeeper = "Вратарь"
-    case defender = "Защитник"
-    case midfielder = "Полузащитник"
-    case forward = "Нападающий"
-    case coach = "Тренер"
-}
-
-struct Season {
-    let name: String
-    let image: String
-    let match: [Match]
-}
-
-struct MockUser: Decodable {
-    let name: String
-}
-
-
-
-struct Player {
-    let name: String
-    let image: String
-    let birthdayDate: String
-    let position: Position
-    let aboutPlayer: String
-    let mvpMonth: String
-    let goalsInSeason: Int
-    let passesInSeason: Int
-
-    static func getPlayers() -> [[Player]] {
-        [
-            [
-                Player(name: "Antonio Huan", image: "1", birthdayDate: "01.01.2020", position: .coach, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Marson Geel", image: "2", birthdayDate: "01.01.2020", position: .coach, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1)
-            ],
-            [
-                Player(name: "Antonio Huan", image: "3", birthdayDate: "01.01.2020", position: .goalkeeper, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1)
-            ],
-            [
-                Player(name: "Antonio Huan", image: "1", birthdayDate: "01.01.2020", position: .defender, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Marson Geel", image: "2", birthdayDate: "01.01.2020", position: .defender, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Rusty Bound", image: "3", birthdayDate: "01.01.2020", position: .defender, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Klerk Bradly", image: "4", birthdayDate: "01.01.2020", position: .defender, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Augusto Demov", image: "5", birthdayDate: "01.01.2020", position: .defender, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1)
-            ],
-            [
-                Player(name: "Antonio Huan", image: "1", birthdayDate: "01.01.2020", position: .midfielder, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Marson Geel", image: "2", birthdayDate: "01.01.2020", position: .midfielder, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Rusty Bound", image: "3", birthdayDate: "01.01.2020", position: .midfielder, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Klerk Bradly", image: "4", birthdayDate: "01.01.2020", position: .midfielder, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Augusto Demov", image: "5", birthdayDate: "01.01.2020", position: .midfielder, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1)
-            ],
-            [
-                Player(name: "Antonio Huan", image: "1", birthdayDate: "01.01.2020", position: .forward, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Marson Geel", image: "2", birthdayDate: "01.01.2020", position: .forward, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Rusty Bound", image: "3", birthdayDate: "01.01.2020", position: .forward, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Klerk Bradly", image: "4", birthdayDate: "01.01.2020", position: .forward, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1),
-                Player(name: "Augusto Demov", image: "5", birthdayDate: "01.01.2020", position: .forward, aboutPlayer: "Хороший Игрок", mvpMonth: "1", goalsInSeason: 1, passesInSeason: 1)
-            ]
-        ]
-    }
-}
-
-struct Team {
-    let position: Position
-    let player: Player
-}
-
-
-struct Match {
-    let seasonName: String
-    let tourName: String
-    let tournamentImage: String
-    let tournamentTable: String
-    let systemaTeamName: String
-    let rivalTeamName: String
-    let scoreMatch: String
-    let goalsPlayersInMatch: [String]
-    let passesPlayersInMatch: [String]
-    let squadOnGame: [String]
+struct Match: Decodable, WebViewContentProtocol {
+    let assistPlayers: [String]
     let dateMatch: String
+    let goalsPlayers: [String]
+    let idSeason: String
+    let opponentName: String
+    let score: String
+    let squad: [String]
+    let systemName: String
     let timeMatch: String
-
+    let tourNumber: String
+    let tournamentName: String
+    let url: String
 }
+
+struct Player: Decodable {
+    let assistInSeason: String?
+    let descriptionPlayer: String?
+    let gamesInSeason: String?
+    let goalsInSeason: String?
+    let id: String
+    let image: String?
+    let name: String
+    let position: String
+    let totalAssists: String?
+    let totalGames: String?
+    let totalGoals: String?
+    let zeroGameGk: String?
+}
+
+struct News: Decodable, WebViewContentProtocol {    
+    let date: String
+    let image: String
+    let text: String
+    let title: String
+    let url: String
+}
+
+struct StatisticsTeam: Decodable {
+    let balls: String
+    let draw: String
+    let games: String
+    let iconName: String
+    let idSeason: String
+    let imageUrl: String
+    let loss: String
+    let nameSeason: String
+    let points: String
+    let wins: String
+}
+
+struct CurrentSeason: Decodable {
+    let idSeason: String
+}
+
+
+struct About {
+    let imageName: String
+    let description: String
+    let color: UIColor
+    let isSetup: Bool
+}
+
+struct SetupApp: Decodable {
+    let urlRateApp: String
+    let versionApp: String
+}
+
+struct PlayerStat {
+    let name: String
+    let image: String?
+    let goals: Int?
+    let games: Int?
+    let assist: Int?
+    let gatesZero: String?
+    let position: String
+    let descriptionPlayer: String?
+}
+
+
