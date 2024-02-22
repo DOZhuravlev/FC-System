@@ -37,7 +37,7 @@ final class PlayerViewCell: UICollectionViewCell {
         label.textColor = .black
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
-
+        label.textAlignment = .center
         return label
     }()
 
@@ -84,14 +84,17 @@ final class PlayerViewCell: UICollectionViewCell {
             image.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
             image.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
             mainStack.heightAnchor.constraint(equalToConstant: 210),
-            mainStack.widthAnchor.constraint(equalToConstant: 170)
+            mainStack.widthAnchor.constraint(equalToConstant: 170),
+            label.widthAnchor.constraint(equalToConstant: 166)
         ])
     }
     // MARK: - ConfigCell
 
     func configure(player: Player) {
 
-        image.getImage(url: player.image!) { imageSize in
+        guard let playerImage = player.image else { return }
+
+        image.getImage(url: playerImage) { imageSize in
             if let imageSize = imageSize {
                 self.image.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
             }
@@ -101,5 +104,6 @@ final class PlayerViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         self.image.image = nil
+        self.label.text = ""
     }
 }
