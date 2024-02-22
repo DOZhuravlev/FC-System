@@ -144,7 +144,8 @@ final class SquadViewCell: UITableViewCell {
 
     func configure(player: Player, match: Match, goalsCount: Int? = nil, assistCount: Int? = nil) {
         nameLabel.text = player.name
-        photoImageView.getImage(url: player.image!) { imageSize in
+        guard let playerImage = player.image else { return }
+        photoImageView.getImage(url: playerImage) { imageSize in
             if let imageSize = imageSize {
                 DispatchQueue.main.async {
                     self.photoImageView.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
