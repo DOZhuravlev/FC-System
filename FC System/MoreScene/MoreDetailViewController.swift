@@ -66,6 +66,8 @@ final class MoreDetailViewController: UIViewController {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
 
@@ -292,6 +294,7 @@ final class MoreDetailViewController: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             descriptionLabel.topAnchor.constraint(equalTo: nameLabelViewContainer.bottomAnchor, constant: 10),
+            descriptionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
 
