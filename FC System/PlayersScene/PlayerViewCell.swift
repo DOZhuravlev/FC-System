@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 final class PlayerViewCell: UICollectionViewCell {
 
@@ -16,8 +17,8 @@ final class PlayerViewCell: UICollectionViewCell {
 
     // MARK: - Outlets
 
-    private var image: ConfigImageView = {
-        let image = ConfigImageView()
+    private var image: UIImageView = {
+        let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 10
         image.clipsToBounds = true
@@ -35,7 +36,7 @@ final class PlayerViewCell: UICollectionViewCell {
     private var label: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.font = .systemFont(ofSize: 12, weight: .semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
@@ -96,22 +97,12 @@ final class PlayerViewCell: UICollectionViewCell {
     // MARK: - ConfigCell
 
     override func prepareForReuse() {
-        DispatchQueue.main.async { [self] in
-            self.image.image = nil
-            print(image.image)
-        }
-
+        self.image.image = nil
     }
 
     func configure(player: Player) {
-
         guard let playerImage = player.image else { return }
-
-        image.getImage(url: playerImage) { imageSize in
-            if let imageSize = imageSize {
-                self.image.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-            }
-        }
+        image.sd_setImage(with: URL(string: playerImage), placeholderImage: UIImage(named: "siluet"))
         label.text = player.name
     }
 }

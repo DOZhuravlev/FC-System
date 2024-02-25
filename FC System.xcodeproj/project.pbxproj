@@ -24,6 +24,8 @@
 		BD8DF1092B6BC8820002A39D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8DF1082B6BC8820002A39D /* WebViewController.swift */; };
 		BD8F04E52B79F9AA00491389 /* SeasonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F04E42B79F9AA00491389 /* SeasonViewCell.swift */; };
 		BD8F04E72B7B748700491389 /* MoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F04E62B7B748700491389 /* MoreDetailViewController.swift */; };
+		BD8F255F2B8BBA720002B826 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BD8F255E2B8BBA720002B826 /* SDWebImage */; };
+		BD8F25612B8BBA720002B826 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BD8F25602B8BBA720002B826 /* SDWebImageMapKit */; };
 		BDC1839A2B4FFC41003C8600 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC183992B4FFC41003C8600 /* AppDelegate.swift */; };
 		BDC1839C2B4FFC41003C8600 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC1839B2B4FFC41003C8600 /* SceneDelegate.swift */; };
 		BDC1839E2B4FFC41003C8600 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC1839D2B4FFC41003C8600 /* MainViewController.swift */; };
@@ -97,10 +99,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD8F255F2B8BBA720002B826 /* SDWebImage in Frameworks */,
 				BDC183D02B5158ED003C8600 /* FirebaseAnalytics in Frameworks */,
 				BDC183D62B5158ED003C8600 /* FirebaseStorage in Frameworks */,
 				BD8A6B952B7D334900FC23FA /* FirebaseMessaging in Frameworks */,
 				BDC183D22B5158ED003C8600 /* FirebaseAuth in Frameworks */,
+				BD8F25612B8BBA720002B826 /* SDWebImageMapKit in Frameworks */,
 				BDC183D42B5158ED003C8600 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +324,8 @@
 				BDC183D32B5158ED003C8600 /* FirebaseFirestore */,
 				BDC183D52B5158ED003C8600 /* FirebaseStorage */,
 				BD8A6B942B7D334900FC23FA /* FirebaseMessaging */,
+				BD8F255E2B8BBA720002B826 /* SDWebImage */,
+				BD8F25602B8BBA720002B826 /* SDWebImageMapKit */,
 			);
 			productName = "FC System";
 			productReference = BDC183962B4FFC41003C8600 /* FC System.app */;
@@ -351,6 +357,7 @@
 			mainGroup = BDC1838D2B4FFC41003C8600;
 			packageReferences = (
 				BDC183CE2B5158ED003C8600 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				BD8F255D2B8BBA720002B826 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = BDC183972B4FFC41003C8600 /* Products */;
 			projectDirPath = "";
@@ -638,6 +645,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BD8F255D2B8BBA720002B826 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.19.0;
+			};
+		};
 		BDC183CE2B5158ED003C8600 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -653,6 +668,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BDC183CE2B5158ED003C8600 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		BD8F255E2B8BBA720002B826 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD8F255D2B8BBA720002B826 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		BD8F25602B8BBA720002B826 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD8F255D2B8BBA720002B826 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 		BDC183CF2B5158ED003C8600 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

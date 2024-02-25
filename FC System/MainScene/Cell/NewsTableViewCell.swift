@@ -16,10 +16,9 @@ final class NewsTableViewCell: UITableViewCell {
 
     // MARK: - Outlets
 
-    private let photoImageView: ConfigImageView = {
-        let imageView = ConfigImageView()
+    private let photoImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
-        imageView.layer.cornerRadius = imageView.bounds.height / 2
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
@@ -91,11 +90,7 @@ final class NewsTableViewCell: UITableViewCell {
     func configure(news: News) {
         titleLabel.text = news.title
         dateLabel.text = news.date
-        photoImageView.getImage(url: news.image) { imageSize in
-            if let imageSize = imageSize {
-                self.photoImageView.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-            }
-        }
+        photoImageView.sd_setImage(with: URL(string: news.image))
     }
 
     override func prepareForReuse() {

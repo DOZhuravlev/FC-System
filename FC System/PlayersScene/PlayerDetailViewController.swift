@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 final class PlayerDetailViewController: UIViewController {
 
@@ -39,8 +40,8 @@ final class PlayerDetailViewController: UIViewController {
         return label
     }()
 
-    private var image: ConfigImageView = {
-        let image = ConfigImageView()
+    private var image: UIImageView = {
+        let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 10
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -120,11 +121,7 @@ final class PlayerDetailViewController: UIViewController {
 
     private func binding() {
         guard let imageUrl = playersStat.image else { return }
-        image.getImage(url: imageUrl) { imageSize in
-            if let imageSize = imageSize {
-                self.image.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-            }
-        }
+        image.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "siluet"))
 
         createLabelsForStackView(imageStack: "stadium" ,text1: String(playersStat.games ?? 0), text2: "Игр", in: statisticsStackView)
         createLabelsForStackView(imageStack: "ball", text1: String(playersStat.goals ?? 0), text2: "Голов", in: statisticsStackView)

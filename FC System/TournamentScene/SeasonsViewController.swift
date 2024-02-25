@@ -14,7 +14,7 @@ final class SeasonsViewController: UIViewController {
 
     private let verticalSpacing: CGFloat = 20
     private let horizontalSpacing: CGFloat = 20
-    private let sectionInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8) // Отступы слева и справа
+    private let sectionInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     private var statisticsTeam: [StatisticsTeam] = []
 
     // MARK: - Outlets

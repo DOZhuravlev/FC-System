@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="F4X-iK-h64">
-                                <rect key="frame" x="76" y="362" width="240" height="128"/>
+                                <rect key="frame" x="76.666666666666686" y="374.66666666666669" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="AXL-Ge-410"/>
                                     <constraint firstAttribute="width" constant="240" id="Ryk-ii-1EP"/>
@@ -27,10 +27,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="F4X-iK-h64" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="303" id="2y1-6k-9aH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="F4X-iK-h64" secondAttribute="bottom" constant="328" id="eC2-Cr-GCy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F4X-iK-h64" secondAttribute="trailing" constant="77" id="xtw-g0-qnL"/>
-                            <constraint firstItem="F4X-iK-h64" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="76" id="xvD-dd-dXy"/>
+                            <constraint firstItem="F4X-iK-h64" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="GaH-Wr-LuG"/>
+                            <constraint firstItem="F4X-iK-h64" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="jJ3-PH-7KS"/>
                         </constraints>
                     </view>
                 </viewController>

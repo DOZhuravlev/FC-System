@@ -67,7 +67,7 @@ final class FootballFieldViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 253/255, green: 243/255, blue: 120/255, alpha: 1)
+        view.backgroundColor = .black
         view.addSubview(drawingView)
         setupUI()
         addPlayers()

@@ -88,6 +88,7 @@ final class MoreViewController: UIViewController {
         label.font = .systemFont(ofSize: 12, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
+        label.text = "Версия 1.0"
         return label
     }()
 

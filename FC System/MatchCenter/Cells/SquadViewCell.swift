@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 final class SquadViewCell: UITableViewCell {
 
@@ -24,12 +25,9 @@ final class SquadViewCell: UITableViewCell {
         return label
     }()
 
-    private let photoImageView: ConfigImageView = {
-        let imageView = ConfigImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
-        imageView.clipsToBounds = true
+    private let photoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -145,13 +143,7 @@ final class SquadViewCell: UITableViewCell {
     func configure(player: Player, match: Match, goalsCount: Int? = nil, assistCount: Int? = nil) {
         nameLabel.text = player.name
         guard let playerImage = player.image else { return }
-        photoImageView.getImage(url: playerImage) { imageSize in
-            if let imageSize = imageSize {
-                DispatchQueue.main.async {
-                    self.photoImageView.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-                }
-            }
-        }
+        photoImageView.sd_setImage(with: URL(string: playerImage), placeholderImage: UIImage(named: "siluet"))
 
         ballImageView.isHidden = true
         goalLabel.isHidden = true

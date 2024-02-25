@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 enum ResultsAction {
     case goals(array: [PlayerStat])
@@ -63,8 +64,8 @@ final class MatchesListViewController: UIViewController {
         return view
     }()
     
-    private let seasonTableImage: ConfigImageView = {
-        let image = ConfigImageView()
+    private let seasonTableImage: UIImageView = {
+        let image = UIImageView()
         image.contentMode = .scaleToFill
         image.layer.cornerRadius = 10
         image.clipsToBounds = true
@@ -421,14 +422,8 @@ final class MatchesListViewController: UIViewController {
     // MARK: - Binding
     
     private func binding() {
-        seasonTableImage.getImage(url: statisticsTeam.imageUrl) { imageSize in
-            if let imageSize = imageSize {
-                DispatchQueue.main.async {
-                    self.seasonTableImage.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-                }
-            }
-        }
-        
+        seasonTableImage.sd_setImage(with: URL(string: statisticsTeam.imageUrl))
+
         createBlueViewWithLabels(text1: statisticsTeam.games, text2: "Игр", in: statisticsUpperStackView)
         createBlueViewWithLabels(text1: statisticsTeam.balls, text2: "Мячи", in: statisticsUpperStackView)
         createBlueViewWithLabels(text1: statisticsTeam.points, text2: "Очки", in: statisticsUpperStackView)

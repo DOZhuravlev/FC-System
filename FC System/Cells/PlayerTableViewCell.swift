@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 final class PlayerTableViewCell: UITableViewCell {
 
@@ -24,10 +25,9 @@ final class PlayerTableViewCell: UITableViewCell {
         return label
     }()
 
-    private let photoImageView: ConfigImageView = {
-        let imageView = ConfigImageView()
-        imageView.contentMode = .scaleToFill
-        imageView.layer.cornerRadius = 15
+    private let photoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -99,11 +99,7 @@ final class PlayerTableViewCell: UITableViewCell {
     func configure(name: String, image: String, number: Int) {
         nameLabel.text = name
         resultNumberLabel.text = "\(number)"
-        photoImageView.getImage(url: image) { imageSize in
-            if let imageSize = imageSize {
-                self.photoImageView.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-            }
-        }
+        photoImageView.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "siluet"))
     }
 
     override func prepareForReuse() {

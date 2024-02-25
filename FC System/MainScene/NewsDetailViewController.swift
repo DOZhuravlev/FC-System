@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 final class NewsDetailViewController: UIViewController {
 
@@ -16,8 +17,8 @@ final class NewsDetailViewController: UIViewController {
 
     // MARK: - Outlets
 
-    private let imageView: ConfigImageView = {
-        let imageView = ConfigImageView()
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
@@ -162,11 +163,7 @@ final class NewsDetailViewController: UIViewController {
     }
 
     private func binding() {
-        imageView.getImage(url: news.image) { imageSize in
-            if let imageSize = imageSize {
-                self.imageView.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-            }
-        }
+        imageView.sd_setImage(with: URL(string: news.image))
         titleLabel.text = news.title
         dateLabel.text = news.date
         contentLabel.text = news.text

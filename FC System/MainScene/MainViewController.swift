@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import SDWebImage
 
 final class MainViewController: UIViewController {
 
@@ -175,18 +176,15 @@ final class MainViewController: UIViewController {
 
         for (index, oneNews) in topNews.enumerated() {
 
-            let imageView = ConfigImageView()
+            let imageView = UIImageView()
             imageView.contentMode = .scaleToFill
 
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.tag = index
             imageView.frame = CGRect(x: 0, y: 0, width: pageScrollView.frame.width, height: pageScrollView.frame.height)
 
-            imageView.getImage(url: oneNews.image) { imageSize in
-                if let imageSize = imageSize {
-                    imageView.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
-                }
-            }
+            imageView.sd_setImage(with: URL(string: oneNews.image))
+
             pageScrollView.addSubview(imageView)
 
             let gradientLayer = CAGradientLayer()
@@ -517,19 +515,3 @@ extension MainViewController: UIScrollViewDelegate {
         pageControl.currentPage = Int(pageIndex)
     }
 }
-
-
-
-// MARK: - Properties
-// MARK: - Outlets
-// MARK: - Lifecycles
-// MARK: - SetupUI
-// MARK: - FetchData
-// MARK: - Actions
-// MARK: - Initializers
-// MARK: - Binding
-// MARK: - ConfigureCell
-
-
-//[weak self]
-//guard let self = self else { return }
