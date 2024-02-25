@@ -41,13 +41,9 @@ final class PlayerDetailViewController: UIViewController {
 
     private var image: ConfigImageView = {
         let image = ConfigImageView()
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 10
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.layer.shadowColor = UIColor.black.cgColor
-        image.layer.shadowOpacity = 30
-        image.layer.shadowOffset = .zero
-        image.layer.shadowRadius = 30
         image.clipsToBounds = true
         return image
     }()
@@ -194,8 +190,7 @@ final class PlayerDetailViewController: UIViewController {
 
         view.addSubview(containerView)
         view.addSubview(position)
-        view.addSubview(shadowView)
-        shadowView.addSubview(image)
+        view.addSubview(image)
         view.addSubview(name)
         view.addSubview(statisticsSeasonLabel)
         view.addSubview(statisticsStackView)
@@ -257,14 +252,11 @@ final class PlayerDetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             position.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             position.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            shadowView.topAnchor.constraint(equalTo: position.bottomAnchor, constant: 5),
-            shadowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            shadowView.widthAnchor.constraint(equalToConstant: 200),
-            shadowView.heightAnchor.constraint(equalToConstant: 200),
-            image.topAnchor.constraint(equalTo: shadowView.topAnchor),
-            image.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
-            image.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
-            image.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
+            image.topAnchor.constraint(equalTo: position.bottomAnchor, constant: 5),
+            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            image.widthAnchor.constraint(equalToConstant: 200),
+            image.heightAnchor.constraint(equalToConstant: 200),
+
             name.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 15),
             name.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             statisticsSeasonLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),

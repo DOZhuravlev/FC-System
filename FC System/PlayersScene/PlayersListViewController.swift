@@ -199,11 +199,17 @@ extension PlayersListViewController: UICollectionViewDataSource, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
+        return UIEdgeInsets(top: 10, left: 28, bottom: 10, right: 28)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 170, height: 210)
+        let numberOfColumns: CGFloat = 2
+            let horizontalSpacing: CGFloat = 30 // Расстояние между элементами по горизонтали
+            let paddingSpace = horizontalSpacing * (numberOfColumns + 1) // Расстояние между элементами + отступы с каждой стороны
+            let availableWidth = collectionView.bounds.width - paddingSpace
+            let itemWidth = availableWidth / numberOfColumns
+            let itemHeight = itemWidth * 1.3 // Например, я взял 1.3 как соотношение ширины и высоты ячейки
+            return CGSize(width: itemWidth, height: itemHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

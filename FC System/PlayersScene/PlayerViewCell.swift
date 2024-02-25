@@ -18,7 +18,7 @@ final class PlayerViewCell: UICollectionViewCell {
 
     private var image: ConfigImageView = {
         let image = ConfigImageView()
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 10
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -35,9 +35,11 @@ final class PlayerViewCell: UICollectionViewCell {
     private var label: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 12, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
 
@@ -47,12 +49,6 @@ final class PlayerViewCell: UICollectionViewCell {
         stack.axis = .vertical
         stack.alignment = .center
         stack.distribution = .fill
-        stack.backgroundColor = .white
-        stack.layer.shadowColor = UIColor.systemGray2.cgColor
-        stack.layer.shadowOpacity = 10
-        stack.layer.shadowOffset = .zero
-        stack.layer.shadowRadius = 10
-        stack.layer.cornerRadius = 10
         return stack
     }()
 
@@ -62,6 +58,10 @@ final class PlayerViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupHierarchy()
         setupLayout()
+        image.backgroundColor = .systemGray6
+        mainStack.backgroundColor = .systemGray6
+        backgroundView?.backgroundColor = .systemGray6
+        shadowView.backgroundColor = .systemGray6
     }
 
     required init?(coder: NSCoder) {
@@ -72,23 +72,36 @@ final class PlayerViewCell: UICollectionViewCell {
 
     private func setupHierarchy() {
         addSubview(mainStack)
-        mainStack.addArrangedSubview(shadowView)
-        shadowView.addSubview(image)
-        mainStack.addArrangedSubview(label)
+        mainStack.addSubview(label)
+        mainStack.addSubview(image)
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: shadowView.topAnchor),
-            image.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
-            image.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
-            image.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
-            mainStack.heightAnchor.constraint(equalToConstant: 210),
-            mainStack.widthAnchor.constraint(equalToConstant: 170),
-            label.widthAnchor.constraint(equalToConstant: 166)
+            mainStack.topAnchor.constraint(equalTo: topAnchor),
+            mainStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            mainStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+            mainStack.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            image.topAnchor.constraint(equalTo: mainStack.topAnchor),
+            image.leadingAnchor.constraint(equalTo: mainStack.leadingAnchor),
+            image.trailingAnchor.constraint(equalTo: mainStack.trailingAnchor),
+            image.bottomAnchor.constraint(equalTo: mainStack.bottomAnchor, constant: -15),
+
+            label.widthAnchor.constraint(equalTo: mainStack.widthAnchor, constant: -8),
+            label.bottomAnchor.constraint(equalTo: mainStack.bottomAnchor, constant: 0)
+
         ])
     }
     // MARK: - ConfigCell
+
+    override func prepareForReuse() {
+        DispatchQueue.main.async { [self] in
+            self.image.image = nil
+            print(image.image)
+        }
+
+    }
 
     func configure(player: Player) {
 
@@ -100,10 +113,5 @@ final class PlayerViewCell: UICollectionViewCell {
             }
         }
         label.text = player.name
-    }
-
-    override func prepareForReuse() {
-        self.image.image = nil
-        self.label.text = ""
     }
 }
